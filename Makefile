@@ -37,11 +37,11 @@ NCURSES = -lncurses
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) $(INC) $(LIB) $(OBJ) $(NCURSES) -o $(NAME)
+	@$(CC) $(FLAGS) $(INC) $(LIB) $(OBJ) -o $(NAME) -I ~/.brew/include -L ~/.brew/lib -lsfml-system -lsfml-window -lsfml-graphics -lsfml-network -lsfml-audio -rpath ~/.brew/lib $(NCURSES)
 	@echo  "\033[32mCompiled and created" $(NAME) "binary\033[0m"
 
 %.o: %.cpp
-	@$(CC) $(INC) $(FAST) $(FLAGS) -c -o $@ $<
+	@$(CC) $(INC) -I ~/.brew/include $(FAST) $(FLAGS) -c -o $@ $<
 
 clean:
 	@rm -f $(OBJ)
