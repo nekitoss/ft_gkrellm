@@ -4,3 +4,7 @@
 OSinfo::OSinfo() {
     _index = 1;
 }
+
+void OSinfo::upData() {
+
+}

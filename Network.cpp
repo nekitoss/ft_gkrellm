@@ -4,3 +4,7 @@
 Network::Network() {
     _index = 5;
 }
+
+void Network::upData() {
+
+}

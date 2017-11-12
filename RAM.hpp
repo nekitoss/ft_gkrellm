@@ -1,8 +1,8 @@
 
 #ifndef RAM_HPP
-#define RAM_HPP
+# define RAM_HPP
 
-#include "IMonitorModule.hpp"
+# include "IMonitorModule.hpp"
 
 class RAM: public IMonitorModule {
 

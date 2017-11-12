@@ -1,8 +1,8 @@
 
 #ifndef NETWORK_HPP
-#define NETWORK_HPP
+# define NETWORK_HPP
 
-#include "IMonitorModule.hpp"
+# include "IMonitorModule.hpp"
 
 class Network: public IMonitorModule{
 

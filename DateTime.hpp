@@ -1,8 +1,8 @@
 
 #ifndef DATETIME_HPP
-#define DATETIME_HPP
+# define DATETIME_HPP
 
-#include "IMonitorModule.hpp"
+# include "IMonitorModule.hpp"
 
 class DateTime: public IMonitorModule {
 

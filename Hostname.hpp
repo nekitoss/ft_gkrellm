@@ -1,10 +1,13 @@
 
 #ifndef HOSTNAME_HPP
-#define HOSTNAME_HPP
+# define HOSTNAME_HPP
 
-#include "IMonitorModule.hpp"
+# include "IMonitorModule.hpp"
 
 class Hostname: public IMonitorModule{
+
+private:
+    std::string _data;
 
 public:
     Hostname();
