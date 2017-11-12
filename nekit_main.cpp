@@ -39,10 +39,17 @@ void ncur()
 • RAM module
 • Network throughput module
 */
+	start_color();
+	init_pair(1, COLOR_WHITE, COLOR_BLACK);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(4, COLOR_RED, COLOR_BLACK);
+	init_pair(5, COLOR_BLUE, COLOR_BLACK);
+	box(stdscr, 0 , 0);
 
 	TextDisplay disp;
 
-	if (disp.getSizeX() < 50 || disp.getSizeY() < 40)
+	if (disp.getSizeX() < 50 || disp.getSizeY() < 20)
 	{
 		endwin();
 		std::cerr << "Terminal window is too small!\nResize it and try again!" << std::endl;
@@ -62,11 +69,15 @@ void ncur()
 
     int x = 0;
 
+    int old_x_size = disp.getSizeX();
+    int old_y_size = disp.getSizeY();
+
 	while(!exit_requested)
 	{
+
 		disp.updateScreenSize();
 
-		if (disp.getSizeX() < 50 || disp.getSizeY() < 40)
+		if (disp.getSizeX() < 50 || disp.getSizeY() < 20)
 		{
 			clear();
 			endwin();
@@ -74,13 +85,20 @@ void ncur()
 			exit(1);
 		}
 
-		if((difftime(time(0), timer)) >= 1 || redraw)
+		if((difftime(time(0), timer)) >= 1 || redraw || old_x_size != disp.getSizeX() || old_y_size != disp.getSizeY())
 		{
+			// refresh();
 			clear();
+			// if (old_x_size != disp.getSizeX() || old_y_size != disp.getSizeY())
+			// {
+				old_x_size = disp.getSizeX();
+				old_y_size = disp.getSizeY();
+			// }
 			x = 0;
 			// mvprintw(1, 50, "x=%d", x);
 			
-			x = disp.draw_host(host1, 0, x);
+
+			x = disp.draw_host(host1, 0, x); 
 			// mvprintw(2, 50, "x=%d", x);
 			x = disp.draw_os(os2, 0, x);
 			// mvprintw(3, 50, "x=%d", x);
@@ -95,7 +113,9 @@ void ncur()
 			
 			time(&timer);
 			redraw = false;
+			box(stdscr, 0 , 0);
 			refresh();
+
 		}
 
 		switch (getch()) {
@@ -146,7 +166,7 @@ void ncur()
 		}
 	}
 
-	std::cout << host1.getUser() << std::endl;
+	// std::cout << host1.getUser() << std::endl;
 	// getch();
 	endwin();
 	// std::cout << "x=" << disp.getSizeX() << " y=" << disp.getSizeY() << std::endl;
