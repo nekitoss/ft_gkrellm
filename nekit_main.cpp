@@ -58,7 +58,7 @@ int main()
 	time_t timer;
     time(&timer);
 
-
+    int x = 0;
 
 	while(!exit_requested)
 	{
@@ -75,13 +75,20 @@ int main()
 		if((difftime(time(0), timer)) >= 1 || redraw)
 		{
 			clear();
-			
-			disp.draw_host(host1, 0, 0);
-			disp.draw_os(os2, 0, 5);
-			disp.draw_date(date3,0, 10);
-			disp.draw_cpu(cpu4,0, 15);
-			disp.draw_ram(ram5,0, 20);
-			disp.draw_net(net6,0, 25);
+			x = 0;
+			// mvprintw(1, 50, "x=%d", x);
+			x = disp.draw_host(host1, 0, x);
+			// mvprintw(2, 50, "x=%d", x);
+			x = disp.draw_os(os2, 0, x);
+			// mvprintw(3, 50, "x=%d", x);
+			x = disp.draw_date(date3,0, x);
+			// mvprintw(4, 50, "x=%d", x);
+			x = disp.draw_cpu(cpu4,0, x);
+			// mvprintw(5, 50, "x=%d", x);
+			x = disp.draw_ram(ram5,0, x);
+			// mvprintw(6, 50, "x=%d", x);
+			x = disp.draw_net(net6,0, x);
+			// mvprintw(7, 50, "x=%d", x);
 			
 			time(&timer);
 			redraw = false;

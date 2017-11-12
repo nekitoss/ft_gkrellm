@@ -7,6 +7,9 @@
 	class RAM;
 	class Network;
 
+	const int space_after_data = 1;
+	const int shift_data_x = 0;
+	const int space_before_data = 1;
 	// TextDisplay::TextDisplay(){};
 
 	// TextDisplay::TextDisplay(IMonitorModule a[]) : all(a)
@@ -70,57 +73,79 @@
 		return (this->_sizeY);
 	}
 
-	void TextDisplay::draw_host(Hostname& ptr, int x, int y)
+
+
+
+
+	int TextDisplay::draw_host(Hostname& ptr, int x, int y)
 	{
 		if (ptr.getExist())
 		{
 			ptr.upData();
-			mvprintw(y+1, x+1, ptr.getUser().c_str());
-			mvprintw(y+2, x+1, ptr.getHost().c_str());
+			y += space_before_data;
+			mvprintw(y, x + shift_data_x, ptr.getUser().c_str());
+			mvprintw(++y, x + shift_data_x, ptr.getHost().c_str());
+			y += (space_after_data);
 		}
+		return (y);
 	}
 
-	void TextDisplay::draw_os(OSinfo& ptr, int x, int y)
+	int TextDisplay::draw_os(OSinfo& ptr, int x, int y)
 	{
 		if (ptr.getExist())
 		{
 			ptr.upData();
-			mvprintw(y+1, x+1, ptr.getOS().c_str());
+			y += space_before_data;
+			mvprintw(y, x + shift_data_x, ptr.getOS().c_str());
+			y += (space_after_data);
 		}
+		return (y);
 	}
-	void TextDisplay::draw_date(DateTime& ptr, int x, int y)
+	int TextDisplay::draw_date(DateTime& ptr, int x, int y)
 	{
 		if (ptr.getExist())
 		{
 			ptr.upData();
-			mvprintw(y+1, x+1, ptr.getTime().c_str());
+			y += space_before_data;
+			mvprintw(y, x + shift_data_x, ptr.getTime().c_str());
+			y += (space_after_data);
 		}
+		return (y);
 	}
-	void TextDisplay::draw_cpu(CPU& ptr, int x, int y)
+	int TextDisplay::draw_cpu(CPU& ptr, int x, int y)
 	{
 		if (ptr.getExist())
 		{
 			ptr.upData();
-			mvprintw(y+1, x+1, ptr.getCPU().c_str());
-			mvprintw(y+2, x+1, ptr.getNumber().c_str()); //in %
-			mvprintw(y+3, x+1, "float: %f", ptr.getCPULoad()); //in %
+			y += space_before_data;
+			mvprintw(y, x + shift_data_x, ptr.getCPU().c_str());
+			mvprintw(++y, x + shift_data_x, ptr.getNumber().c_str()); //in %
+			mvprintw(++y, x + shift_data_x, "float: %f", ptr.getCPULoad()); //in %
+			y += (space_after_data);
 		}
+		return (y);
 	}
-	void TextDisplay::draw_ram(RAM& ptr, int x, int y)
+	int TextDisplay::draw_ram(RAM& ptr, int x, int y)
 	{
 		if (ptr.getExist())
 		{
 			ptr.upData();
-			mvprintw(y+1, x+1, ptr.getRam().c_str());
-			mvprintw(y+2, x+1, "float: %d", ptr.getUseram()); //in mb
+			y += space_before_data;
+			mvprintw(y, x + shift_data_x, ptr.getRam().c_str());
+			mvprintw(++y, x + shift_data_x, "float: %d", ptr.getUseram()); //in mb
+			y += (space_after_data);
 		}
+		return (y);
 	}
-	void TextDisplay::draw_net(Network& ptr, int x, int y)
+	int TextDisplay::draw_net(Network& ptr, int x, int y)
 	{
 		if (ptr.getExist())
 		{
 			ptr.upData();
-			mvprintw(y+1, x+1, ptr.getButes().c_str());
-			mvprintw(y+2, x+1, ptr.getPuckets().c_str());
+			y += space_before_data;
+			mvprintw(y, x + shift_data_x, ptr.getButes().c_str());
+			mvprintw(++y, x + shift_data_x, ptr.getPuckets().c_str());
+			y += (space_after_data);
 		}
+		return (y);
 	}
