@@ -1,4 +1,6 @@
 #include "IMonitorDisplay.hpp"
+#include "TextDisplay.hpp"
+
 #include "CPU.hpp"
 #include "DateTime.hpp"
 #include "Hostname.hpp"
@@ -6,11 +8,10 @@
 #include "Network.hpp"
 #include "OSinfo.hpp"
 #include "RAM.hpp"
-#include "TextDisplay.hpp"
+
 #include <ncurses.h>
 #include <iostream>
 #include <string>
-
 
 
 int main()
@@ -21,6 +22,8 @@ int main()
 	CPU			cpu4;
 	RAM			ram5;
 	Network		net6;
+
+	// IMonitorModule *all[6] = {&host1, &os2, &date3, &cpu4, &ram5, &net6};
 
 	initscr();
 	noecho();
@@ -38,6 +41,8 @@ int main()
 • Network throughput module
 */
 
+	// TextDisplay disp(new IMonitorModule arr{&host1, &os2, &date3, &cpu4, &ram5, &net6});
+	// TextDisplay disp(all);
 	TextDisplay disp;
 
 	if (disp.getSizeX() < 40 || disp.getSizeY() < 40)
@@ -66,7 +71,7 @@ int main()
 		if((difftime(time(0), timer)) >= 1 || redraw)
 		{
 			clear();
-			
+			disp.draw_host(host1);
 			time(&timer);
 			redraw = false;
 			refresh();
@@ -117,23 +122,10 @@ int main()
 		}
 	}
 
-
+	std::cout << host1.getUser() << std::endl;
 	// getch();
 	endwin();
 	std::cout << "x=" << disp.getSizeX() << " y=" << disp.getSizeY() << std::endl;
 	
 	return (0);
 }
-/*
-  main_win = initscr();
-  cbreak();
-
-  screen_max = Vector(COLS, LINES);
-  int info_panel_h = 4;
-  info_win = newwin(screen_max.y - info_panel_h - 2, screen_max.x - 2,
-                    screen_min.y + 1, screen_min.x + 1);
-  stats_win = newwin(info_panel_h - 1, screen_max.x - 10,
-                    (screen_max.y - info_panel_h), 2);
-  main_win = newwin(screen_max.y, screen_max.x, 0, 0);
-  
-*/
