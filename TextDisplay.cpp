@@ -102,7 +102,8 @@
 		{
 			ptr.upData();
 			mvprintw(y+1, x+1, ptr.getCPU().c_str());
-			mvprintw(y+2, x+1, "float: %f", ptr.getCPULoad()); //in %
+			mvprintw(y+2, x+1, ptr.getNumber().c_str()); //in %
+			mvprintw(y+3, x+1, "float: %f", ptr.getCPULoad()); //in %
 		}
 	}
 	void TextDisplay::draw_ram(RAM& ptr, int x, int y)
