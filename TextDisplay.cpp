@@ -79,8 +79,15 @@
 
 	int TextDisplay::draw_host(Hostname& ptr, int x, int y)
 	{
-		WINDOW *local_win = newwin(10, 10, 0, 0);
-		box(local_win, 0 , 0);wrefresh(local_win);
+		// attron(COLOR_PAIR(1));
+		// WINDOW * local_win = newwin(10, 10, 1, 1);
+		 // wbkgd(local_win, COLOR_PAIR(1));
+		// wborder(local_win, '|', '|', '-', '-', '+', '+', '+', '+');
+		// wrefresh(local_win);
+		// getch();
+		// refresh();
+		// delwin(local_win);
+		// attroff(COLOR_PAIR(1));
 		if (ptr.getExist())
 		{
 			ptr.upData();
@@ -89,7 +96,6 @@
 			mvprintw(++y, x + shift_data_x, ptr.getHost().c_str());
 			y += (space_after_data);
 		}
-		// delwin(local_win);
 		return (y);
 	}
 
@@ -122,8 +128,20 @@
 			ptr.upData();
 			y += space_before_data;
 			mvprintw(y, x + shift_data_x, ptr.getCPU().c_str());
-			mvprintw(++y, x + shift_data_x, ptr.getNumber().c_str()); //in %
-			mvprintw(++y, x + shift_data_x, "float: %f", ptr.getCPULoad()); //in %
+			mvprintw(++y, x + shift_data_x, ptr.getNumber().c_str());
+
+			int right = (400 - ptr.getCPULoad()) / 10;
+			int left = 40 - right;
+			// mvprintw(++y, x + shift_data_x, "L=%d; R=%d; PTR=%f", left, right, ptr.getCPULoad()); //in %
+			++y;
+			mvaddch(y, x++ + shift_data_x, '[' | A_BOLD | COLOR_PAIR(1));
+			for (int i = 0; i < left; i++)
+				mvaddch(y, x + shift_data_x + i, '#' | A_BOLD | A_REVERSE | COLOR_PAIR(4));
+			for (int i = 0; i < right; i++)
+				mvaddch(y, x + shift_data_x + left + i, '-' );
+			mvaddch(y, x + shift_data_x + left + right, ']' | A_BOLD | COLOR_PAIR(1));
+			// mvprintw(++y, x + shift_data_x, "%c", ptr.getCPULoad()); //in %
+
 			y += (space_after_data);
 		}
 		return (y);
@@ -135,7 +153,17 @@
 			ptr.upData();
 			y += space_before_data;
 			mvprintw(y, x + shift_data_x, ptr.getRam().c_str());
-			mvprintw(++y, x + shift_data_x, "float: %d", ptr.getUseram()); //in mb
+			// mvprintw(++y, x + shift_data_x, "float: %d", ptr.getUseram()); //in mb
+			int right = (400 - (ptr.getUseram()) / 81.92) / 10;
+			int left = 40 - right;
+			// mvprintw(++y, x + shift_data_x, "L=%d; R=%d; PTR=%d", left, right, ptr.getUseram()); //in %
+			++y;
+			mvaddch(y, x++ + shift_data_x, '[' | A_BOLD | COLOR_PAIR(1));
+			for (int i = 0; i < left; i++)
+				mvaddch(y, x + shift_data_x + i, '#' | A_BOLD | A_REVERSE | COLOR_PAIR(4));
+			for (int i = 0; i < right; i++)
+				mvaddch(y, x + shift_data_x + left + i, '-' );
+			mvaddch(y, x + shift_data_x + left + right, ']' | A_BOLD | COLOR_PAIR(1));
 			y += (space_after_data);
 		}
 		return (y);
