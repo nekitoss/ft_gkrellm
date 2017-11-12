@@ -8,14 +8,24 @@ class CPU: public IMonitorModule  {
 
 private:
     std::string _nc;
-    std::string _cl;
+    float _cl;
+    int _index;
+    bool _exist;
 
 public:
     CPU();
+    CPU(const CPU &obj);
     void upData(void);
-    std::string getCPU(void);
+    int getIndex(void) const;
+    bool getExist(void) const;
+    void setExist(void);
+    std::string getCPU(void) const;
     void CPULoad(void);
-    std::string getCPULoad(void);
+    float getCPULoad(void) const;
+    float GetCPULoad();
+    float CalculateCPULoad(unsigned long long idleTicks, unsigned long long totalTicks);
+    CPU &operator=(const CPU &obj);
+    ~CPU();
 };
 
 #endif

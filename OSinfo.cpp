@@ -3,6 +3,7 @@
 
 OSinfo::OSinfo() {
     _index = 1;
+    _exist = true;
 }
 
 void OSinfo::upData() {
@@ -21,6 +22,34 @@ void OSinfo::upData() {
     _os += strm.str();
 }
 
-std::string OSinfo::getOS() {
+std::string OSinfo::getOS() const {
     return _os;
+}
+
+
+OSinfo::OSinfo(const OSinfo &obj) {
+    *this = obj;
+}
+
+int OSinfo::getIndex() const {
+    return (_index);
+}
+
+OSinfo & OSinfo::operator=(const OSinfo &obj) {
+    _index = obj.getIndex();
+    _exist = obj.getExist();
+    _os = obj.getOS();
+    return (*this);
+}
+
+bool OSinfo::getExist(void) const {
+    return (_exist);
+}
+
+void OSinfo::setExist(void) {
+    _exist = !_exist;
+}
+
+OSinfo::~OSinfo() {
+    return;
 }

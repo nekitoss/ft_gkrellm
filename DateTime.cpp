@@ -3,6 +3,7 @@
 #include <iomanip>
 DateTime::DateTime() {
     _index = 2;
+    _exist = true;
 }
 
 void DateTime::upData() {
@@ -25,6 +26,33 @@ void DateTime::upData() {
     _time += ss.str();
 }
 
-std::string DateTime::getTime() {
+std::string DateTime::getTime() const {
     return _time;
+}
+
+DateTime::DateTime(const DateTime &obj) {
+    *this = obj;
+}
+
+int DateTime::getIndex() const {
+    return (_index);
+}
+
+DateTime & DateTime::operator=(const DateTime &obj) {
+    _index = obj.getIndex();
+    _exist = obj.getExist();
+    _time = obj.getTime();
+    return (*this);
+}
+
+bool DateTime::getExist(void) const {
+    return (_exist);
+}
+
+void DateTime::setExist(void) {
+    _exist = !_exist;
+}
+
+DateTime::~DateTime() {
+    return;
 }
