@@ -51,48 +51,57 @@ int main()
 	// std::string str = "test";
 
 	// printw(str.c_str());
-
+	IMonitorModule *module = host1;
 	bool exit_requested = false;
+	bool edit_mode = false;
 	while(!exit_requested)
 	{
 		
 
 		refresh();
 		
-		switch (getch()) {
-			case 'q':
-				exit_requested = true;
-				break;
-			case 27:
-				exit_requested = true;
-				break;
-			case KEY_UP:
-				break;
-			case KEY_DOWN:
-				break;
-			case KEY_LEFT:
-				break;
-			case KEY_RIGHT:
-				break;
-			case '1':
-				printw("got one");
-				break;
-			case '2':
-				break;
-			case '3':
-				break;
-			case '4':
-				break;
-			case '5':
-				break;
-			case '6':
-				break;
-			case 'm':
-				break;
-			case ' ':
-				break;
-			default:
-				break;
+		if ()
+		{
+			switch (getch()) {
+				case 'q':
+					exit_requested = true;
+					break;
+				case 27:
+					exit_requested = true;
+					break;
+				case KEY_UP:
+					break;
+				case KEY_DOWN:
+					break;
+				case KEY_LEFT:
+					break;
+				case KEY_RIGHT:
+					break;
+				case '1':
+					host1.setExist();
+					break;
+				case '2':
+					os2.setExist();
+					break;
+				case '3':
+					date3.setExist();
+					break;
+				case '4':
+					cpu4.setExist();
+					break;
+				case '5':
+					ram5.setExist();
+					break;
+				case '6':
+					net6.setExist();
+					break;
+				case 'm':
+					break;
+				case ' ':
+					break;
+				default:
+					break;
+			}
 		}
 	}
 
