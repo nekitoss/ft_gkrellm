@@ -53,13 +53,25 @@ int main()
 	// printw(str.c_str());
 	IMonitorModule * module = &host1;
 	bool exit_requested = false;
+	bool redraw = false;
+
+	time_t timer;
+    time(&timer);
+
+
 
 	while(!exit_requested)
 	{
 		
+		if((difftime(time(0), timer)) >= 1 || redraw)
+		{
+			clear();
+			
+			time(&timer);
+			redraw = false;
+			refresh();
+		}
 
-		refresh();
-		
 		switch (getch()) {
 			case 'q':
 				exit_requested = true;
@@ -95,6 +107,7 @@ int main()
 				break;
 			case ' ':
 				module->setExist();
+				redraw = true;
 				break;
 			case 'd':
 				module->setExist();
