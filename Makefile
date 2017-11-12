@@ -25,7 +25,8 @@ SRC = nekit_main.cpp\
 		Network.cpp\
 		OSinfo.cpp\
 		RAM.cpp\
-		TextDisplay.cpp
+		TextDisplay.cpp\
+		GrafDisplay.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
