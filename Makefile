@@ -22,7 +22,6 @@ SRC = nekit_main.cpp\
 		CPU.cpp\
 		DateTime.cpp\
 		Hostname.cpp\
-		IMonitorModule.cpp\
 		Network.cpp\
 		OSinfo.cpp\
 		RAM.cpp\

@@ -24,13 +24,14 @@ public:
 	void updateScreenSize();
 	virtual int	getSizeX();
 	virtual int	getSizeY();
+	
 	void draw_host(Hostname& ptr, int x, int y);
+	void draw_os(OSinfo& ptr, int x, int y);
+	void draw_date(DateTime& ptr, int x, int y);
+	void draw_cpu(CPU& ptr, int x, int y);
+	void draw_ram(RAM& ptr, int x, int y);
+	void draw_net(Network& ptr, int x, int y);
 
-	// void draw_os(OSinfo& ptr, int x, int y);
-	// void draw_date(DateTime& ptr, int x, int y);
-	// void draw_cpu(CPU& ptr, int x, int y);
-	// void draw_ram(RAM& ptr, int x, int y);
-	// void draw_net(Network& ptr, int x, int y);
 private:
 	int _sizeX;
 	int _sizeY;

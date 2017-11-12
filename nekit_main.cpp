@@ -40,7 +40,7 @@ int main()
 
 	TextDisplay disp;
 
-	if (disp.getSizeX() < 40 || disp.getSizeY() < 40)
+	if (disp.getSizeX() < 50 || disp.getSizeY() < 40)
 	{
 		endwin();
 		std::cerr << "Terminal window is too small!\nResize it and try again!" << std::endl;
@@ -64,16 +64,24 @@ int main()
 	{
 		disp.updateScreenSize();
 
+		if (disp.getSizeX() < 50 || disp.getSizeY() < 40)
+		{
+			clear();
+			endwin();
+			std::cerr << "You make size of window too small! Resize it and run again!" << std::endl;
+			exit(1);
+		}
+
 		if((difftime(time(0), timer)) >= 1 || redraw)
 		{
 			clear();
 			
 			disp.draw_host(host1, 0, 0);
-			// disp.draw_os(os2,0, 0);
-			// disp.draw_date(date3,0, 0);
-			// disp.draw_cpu(cpu4,0, 0);
-			// disp.draw_ram(ram5,0, 0);
-			// disp.draw_net(net6,0, 0);
+			disp.draw_os(os2, 0, 5);
+			disp.draw_date(date3,0, 10);
+			disp.draw_cpu(cpu4,0, 15);
+			disp.draw_ram(ram5,0, 20);
+			disp.draw_net(net6,0, 25);
 			
 			time(&timer);
 			redraw = false;
@@ -131,7 +139,7 @@ int main()
 	std::cout << host1.getUser() << std::endl;
 	// getch();
 	endwin();
-	std::cout << "x=" << disp.getSizeX() << " y=" << disp.getSizeY() << std::endl;
+	// std::cout << "x=" << disp.getSizeX() << " y=" << disp.getSizeY() << std::endl;
 	
 	return (0);
 }

@@ -80,8 +80,46 @@
 		}
 	}
 
-	// void draw_os(OSinfo& ptr, int x, int y);
-	// void draw_date(DateTime& ptr, int x, int y);
-	// void draw_cpu(CPU& ptr, int x, int y);
-	// void draw_ram(RAM& ptr, int x, int y);
-	// void draw_net(Network& ptr, int x, int y);
+	void TextDisplay::draw_os(OSinfo& ptr, int x, int y)
+	{
+		if (ptr.getExist())
+		{
+			ptr.upData();
+			mvprintw(y+1, x+1, ptr.getOS().c_str());
+		}
+	}
+	void TextDisplay::draw_date(DateTime& ptr, int x, int y)
+	{
+		if (ptr.getExist())
+		{
+			ptr.upData();
+			mvprintw(y+1, x+1, ptr.getTime().c_str());
+		}
+	}
+	void TextDisplay::draw_cpu(CPU& ptr, int x, int y)
+	{
+		if (ptr.getExist())
+		{
+			ptr.upData();
+			mvprintw(y+1, x+1, ptr.getCPU().c_str());
+			mvprintw(y+2, x+1, "float: %f", ptr.getCPULoad()); //in %
+		}
+	}
+	void TextDisplay::draw_ram(RAM& ptr, int x, int y)
+	{
+		if (ptr.getExist())
+		{
+			ptr.upData();
+			mvprintw(y+1, x+1, ptr.getRam().c_str());
+			mvprintw(y+2, x+1, "float: %d", ptr.getUseram()); //in mb
+		}
+	}
+	void TextDisplay::draw_net(Network& ptr, int x, int y)
+	{
+		if (ptr.getExist())
+		{
+			ptr.upData();
+			mvprintw(y+1, x+1, ptr.getButes().c_str());
+			mvprintw(y+2, x+1, ptr.getPuckets().c_str());
+		}
+	}
