@@ -18,7 +18,7 @@ void RAM::upData() {
     stream << ram / (1024 * 1024);
     _ram = "RAM: ";
     _ram += stream.str();
-    _ram += " Gb";
+    _ram += " Mb";
 
     vm_size_t page_size;
     mach_port_t mach_port;
