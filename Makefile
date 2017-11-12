@@ -26,7 +26,8 @@ SRC = main.cpp\
 		IMonitorModule.cpp\
 		Network.cpp\
 		OSinfo.cpp\
-		RAM.cpp
+		RAM.cpp\
+		TextDisplay.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

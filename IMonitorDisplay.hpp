@@ -10,11 +10,11 @@ public:
 	IMonitorDisplay(IMonitorDisplay& src);
 	IMonitorDisplay& operator=(IMonitorDisplay& src);
 	~IMonitorDisplay();
-	void updateScreenSize() = 0;
+	virtual void updateScreenSize() = 0;
 	int	getSizeX();
 	int	getSizeY();
 
-private:
+protected:
 	int _sizeX;
 	int _sizeY;
 
