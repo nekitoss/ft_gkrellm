@@ -18,7 +18,7 @@ FLAGS = -Wall -Wextra -Werror
 
 NAME = ft_gkrellm
 
-SRC = main.cpp\
+SRC = nekit_main.cpp\
 		IMonitorDisplay.cpp\
 		CPU.cpp\
 		DateTime.cpp\

@@ -1,6 +1,9 @@
 #include "TextDisplay.hpp"
 
-	// TextDisplay(){}
+	TextDisplay::TextDisplay()
+	{
+		updateScreenSize();
+	}
 	// TextDisplay(TextDisplay& src)
 	// {
 	// 	*this = src;
@@ -24,5 +27,10 @@
 
 	void TextDisplay::updateScreenSize()
 	{
+		int x=0, y=0;
 
+		getmaxyx(stdscr, y, x);
+
+		this->_sizeX = x;
+		this->_sizeY = y;
 	}
