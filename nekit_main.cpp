@@ -1,5 +1,6 @@
 #include "IMonitorDisplay.hpp"
 #include "TextDisplay.hpp"
+#include "GrafDisplay.hpp"
 
 #include "CPU.hpp"
 #include "DateTime.hpp"
@@ -10,6 +11,7 @@
 #include "RAM.hpp"
 
 #include <ncurses.h>
+#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
 
@@ -150,12 +152,94 @@ void ncur()
 	// std::cout << "x=" << disp.getSizeX() << " y=" << disp.getSizeY() << std::endl;
 }
 
-int main()
+void sfml(void)
 {
-	int i =0;
-	if (i)
-		return (0);
-	else
+	Hostname	host1;
+	OSinfo		os2;
+	DateTime	date3;
+	CPU			cpu4;
+	RAM			ram5;
+	Network		net6;
+
+	sf::RenderWindow window(sf::VideoMode(1200, 800), "ft_gkrellm");
+
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.clear(sf::Color::White);
+
+		GrafDisplay disp;
+		sf::Text text;
+		sf::Font font;
+		font.loadFromFile("GloriaHallelujah.ttf");
+		text.setFont(font);
+
+		disp.updateScreenSize();
+		int y = 0;
+
+		sf::Text host;
+		host.setFont(font);
+		y = disp.draw_host(host1, 0, y, text, host);
+
+		sf::Text os;
+		os.setFont(font);
+		y = disp.draw_os(os2, 0, y, os);
+
+		sf::Text date;
+		date.setFont(font);
+		y = disp.draw_date(date3,0, y, date);
+
+		sf::Text cpu;
+		cpu.setFont(font);
+		sf::Text num;
+		num.setFont(font);
+		sf::Text load;
+		load.setFont(font);
+		y = disp.draw_cpu(cpu4,0, y, cpu, num, load);
+
+		sf::Text ram;
+		ram.setFont(font);
+		sf::Text use;
+		use.setFont(font);
+		y = disp.draw_ram(ram5,0, y, ram, use);
+
+		sf::Text b;
+		b.setFont(font);
+		sf::Text g;
+		g.setFont(font);
+		y = disp.draw_net(net6,0, y, b ,g);
+		window.draw(text);
+		window.draw(host);
+		window.draw(os);
+		window.draw(date);
+		window.draw(cpu);
+		window.draw(num);
+		window.draw(load);
+		window.draw(ram);
+		window.draw(use);
+		window.draw(b);
+		window.draw(g);
+
+		window.display();
+		usleep(300000);
+	}
+}
+
+int main(int argc, char **argv)
+{
+	if (argc != 2) {
+		std::cout << "Usage : ./ft_gkrellm <t> <g>" << std::endl;
+		return 1;
+	}
+	if (argv[1][0] == 't' && !argv[1][1])
 		ncur();
+	else if (argv[1][0] == 'g' && !argv[1][1])
+		sfml();
 	return (0);
 }

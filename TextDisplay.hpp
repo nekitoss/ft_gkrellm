@@ -22,8 +22,8 @@ public:
 	~TextDisplay();
 
 	void updateScreenSize();
-	virtual int	getSizeX();
-	virtual int	getSizeY();
+	int	getSizeX();
+	int	getSizeY();
 	
 	int draw_host(Hostname& ptr, int x, int y);
 	int draw_os(OSinfo& ptr, int x, int y);
