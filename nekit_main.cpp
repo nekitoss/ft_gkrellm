@@ -13,7 +13,6 @@
 #include <iostream>
 #include <string>
 
-
 int main()
 {
 	Hostname	host1;
@@ -22,8 +21,6 @@ int main()
 	CPU			cpu4;
 	RAM			ram5;
 	Network		net6;
-
-	// IMonitorModule *all[6] = {&host1, &os2, &date3, &cpu4, &ram5, &net6};
 
 	initscr();
 	noecho();
@@ -41,8 +38,6 @@ int main()
 • Network throughput module
 */
 
-	// TextDisplay disp(new IMonitorModule arr{&host1, &os2, &date3, &cpu4, &ram5, &net6});
-	// TextDisplay disp(all);
 	TextDisplay disp;
 
 	if (disp.getSizeX() < 40 || disp.getSizeY() < 40)
@@ -56,9 +51,9 @@ int main()
 	// std::string str = "test";
 
 	// printw(str.c_str());
-	IMonitorModule * module = &host1;
+	IMonitorModule * module = NULL;
 	bool exit_requested = false;
-	bool redraw = false;
+	bool redraw = true;
 
 	time_t timer;
     time(&timer);
@@ -67,11 +62,19 @@ int main()
 
 	while(!exit_requested)
 	{
-		
+		disp.updateScreenSize();
+
 		if((difftime(time(0), timer)) >= 1 || redraw)
 		{
 			clear();
-			disp.draw_host(host1);
+			
+			disp.draw_host(host1, 0, 0);
+			// disp.draw_os(os2,0, 0);
+			// disp.draw_date(date3,0, 0);
+			// disp.draw_cpu(cpu4,0, 0);
+			// disp.draw_ram(ram5,0, 0);
+			// disp.draw_net(net6,0, 0);
+			
 			time(&timer);
 			redraw = false;
 			refresh();
@@ -111,11 +114,14 @@ int main()
 				module = &net6;
 				break;
 			case ' ':
-				module->setExist();
+				if (module)
+					module->setExist();
 				redraw = true;
 				break;
 			case 'd':
-				module->setExist();
+				if (module)
+					module->setExist();
+				redraw = true;
 				break;
 			default:
 				break;

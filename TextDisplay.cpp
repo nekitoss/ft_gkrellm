@@ -46,13 +46,6 @@
 		this->_sizeY = y;
 	}
 
-	void TextDisplay::draw_host(Hostname& ptr)
-	{
-		ptr.upData();
-		mvprintw(0, 0, ptr.getUser().c_str());
-		mvprintw(1, 0, ptr.getHost().c_str());
-		mvprintw(2, 2, "sraw_host");
-	}
 
 	TextDisplay::TextDisplay(TextDisplay& src)
 	{
@@ -76,3 +69,19 @@
 	{
 		return (this->_sizeY);
 	}
+
+	void TextDisplay::draw_host(Hostname& ptr, int x, int y)
+	{
+		if (ptr.getExist())
+		{
+			ptr.upData();
+			mvprintw(y+1, x+1, ptr.getUser().c_str());
+			mvprintw(y+2, x+1, ptr.getHost().c_str());
+		}
+	}
+
+	// void draw_os(OSinfo& ptr, int x, int y);
+	// void draw_date(DateTime& ptr, int x, int y);
+	// void draw_cpu(CPU& ptr, int x, int y);
+	// void draw_ram(RAM& ptr, int x, int y);
+	// void draw_net(Network& ptr, int x, int y);
