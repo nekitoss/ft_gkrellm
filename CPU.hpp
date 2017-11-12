@@ -1,8 +1,8 @@
 
 #ifndef CPU_HPP
-#define CPU_HPP
+# define CPU_HPP
 
-#include "IMonitorModule.hpp"
+# include "IMonitorModule.hpp"
 
 class CPU: public IMonitorModule  {
 
