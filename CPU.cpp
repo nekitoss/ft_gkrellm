@@ -24,13 +24,17 @@ void CPU::upData() {
     _nc += stream.str();
     std::ostringstream strea;
     strea << cpy;
-    _nc += ", number of cores: ";
-    _nc += strea.str();
+    _n = "Number of cores: ";
+    _n += strea.str();
     _cl = GetCPULoad() * 100.0f;
 }
 
 std::string CPU::getCPU() const {
     return _nc;
+}
+
+std::string CPU::getNumber() const {
+    return _n;
 }
 
 float CPU::getCPULoad() const {

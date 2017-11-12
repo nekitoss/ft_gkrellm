@@ -47,16 +47,18 @@ void Network::upData() {
         }
     }
     std::ostringstream stream;
-    stream << static_cast<double>(ibytes) / 1000000000.0;
+    stream << static_cast<double>(ibytes);
     _bytes = "Bytes in: ";
     _bytes += stream.str().substr(0, 7);
+    _bytes += " M";
     std::ostringstream stream2;
-    stream2 << static_cast<double>(obytes) / 1000000000.0;
+    stream2 << static_cast<double>(obytes);
     _bytes += " Out: ";
     _bytes += stream2.str().substr(0, 7);
+    _bytes += " M";
     std::ostringstream stream3;
     stream3 <<  ipackets;
-    _puckets = "Puckets in: ";
+    _puckets = "Packets in: ";
     _puckets += stream3.str();
     std::ostringstream stream4;
     stream4 << opackets;

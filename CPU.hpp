@@ -8,6 +8,7 @@ class CPU: public IMonitorModule  {
 
 private:
     std::string _nc;
+    std::string _n;
     float _cl;
     int _index;
     bool _exist;
@@ -20,6 +21,7 @@ public:
     bool getExist(void) const;
     void setExist(void);
     std::string getCPU(void) const;
+    std::string getNumber(void) const;
     void CPULoad(void);
     float getCPULoad(void) const;
     float GetCPULoad();
