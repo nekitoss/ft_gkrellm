@@ -19,10 +19,10 @@ FLAGS = -Wall -Wextra -Werror
 NAME = ft_gkrellm
 
 SRC = nekit_main.cpp\
-		IMonitorDisplay.cpp\
 		CPU.cpp\
 		DateTime.cpp\
 		Hostname.cpp\
+		IMonitorModule.cpp\
 		Network.cpp\
 		OSinfo.cpp\
 		RAM.cpp\
