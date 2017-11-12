@@ -13,7 +13,7 @@
 #include <iostream>
 #include <string>
 
-int main()
+void ncur()
 {
 	Hostname	host1;
 	OSinfo		os2;
@@ -77,6 +77,7 @@ int main()
 			clear();
 			x = 0;
 			// mvprintw(1, 50, "x=%d", x);
+			
 			x = disp.draw_host(host1, 0, x);
 			// mvprintw(2, 50, "x=%d", x);
 			x = disp.draw_os(os2, 0, x);
@@ -147,6 +148,14 @@ int main()
 	// getch();
 	endwin();
 	// std::cout << "x=" << disp.getSizeX() << " y=" << disp.getSizeY() << std::endl;
-	
+}
+
+int main()
+{
+	int i =0;
+	if (i)
+		return (0);
+	else
+		ncur();
 	return (0);
 }

@@ -8,7 +8,7 @@
 	class Network;
 
 	const int space_after_data = 1;
-	const int shift_data_x = 0;
+	const int shift_data_x = 2;
 	const int space_before_data = 1;
 	// TextDisplay::TextDisplay(){};
 
@@ -79,6 +79,8 @@
 
 	int TextDisplay::draw_host(Hostname& ptr, int x, int y)
 	{
+		WINDOW *local_win = newwin(10, 10, 0, 0);
+		box(local_win, 0 , 0);wrefresh(local_win);
 		if (ptr.getExist())
 		{
 			ptr.upData();
@@ -87,6 +89,7 @@
 			mvprintw(++y, x + shift_data_x, ptr.getHost().c_str());
 			y += (space_after_data);
 		}
+		// delwin(local_win);
 		return (y);
 	}
 
