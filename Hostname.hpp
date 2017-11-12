@@ -6,8 +6,8 @@
 
 class Hostname: public IMonitorModule{
 
-private:
-    std::string _data;
+// private:
+//     std::string _data;
 
 public:
     Hostname();
