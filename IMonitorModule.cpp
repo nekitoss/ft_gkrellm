@@ -23,8 +23,8 @@ bool IMonitorModule::getExist(void) const {
     return (_exist);
 }
 
-void IMonitorModule::setExist(bool b) {
-    _exist = b;
+void IMonitorModule::setExist(void) {
+     _exist = !_exist;
 }
 
 IMonitorModule::~IMonitorModule() {

@@ -6,9 +6,12 @@
 
 class DateTime: public IMonitorModule {
 
+private:
+    std::string _time;
 public:
     DateTime();
     void upData(void);
+    std::string getTime(void);
 };
 
 #endif

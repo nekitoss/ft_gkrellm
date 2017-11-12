@@ -3,6 +3,15 @@
 # define IMONITORMODULE_HPP
 
 # include <iostream>
+# include <ctime>
+# include <sys/types.h>
+# include <sys/sysctl.h>
+# include <iostream>
+# include <sstream>
+# include <sys/sysctl.h>
+# include <sys/types.h>
+# include <unistd.h>
+# include <mach/mach_host.h>
 
 class IMonitorModule {
 
@@ -16,7 +25,7 @@ public:
     virtual void upData(void) = 0;
     int getIndex(void) const;
     bool getExist(void) const;
-    void setExist(bool b);
+    void setExist(void);
     IMonitorModule &operator=(const IMonitorModule &obj);
     ~IMonitorModule();
 };
